@@ -1,27 +1,23 @@
 const http = require("http")
 const { v4 } = require("uuid")
 const getBodyData = require("./util")
-
 let books = [
     {
         id: '1',
         name: 'Black Ghost',
         age: 16,
-    }
+    },
 ]
-
 const server = http.createServer(async (req, res) => {
     // 
     if (req.url === '/books' && req.method === 'GET') {
         res.writeHead(200, {
             'Content-Type': 'application/json charset=utf8'
         })
-
         const resp = {
             status: "Running: ...",
             books
         }
-
         res.end(JSON.stringify(resp))
     } else if (req.url === "/books" && req.method === "POST") {
         const data = await getBodyData(req)
@@ -31,7 +27,6 @@ const server = http.createServer(async (req, res) => {
             name,
             age
         }
-
         books.push(newBook)
         const resp = {
             status: 'Created',
@@ -52,7 +47,7 @@ const server = http.createServer(async (req, res) => {
             book
         }
         res.end(JSON.stringify(resp))
-    } else if (req.url.match(/\/books\/\w+/) && req.method === "PUT") {
+    } else if (req.url.match() && req.method === "PUT") {
         const id = req.url.split("/")[2]
         const data = await getBodyData(req)
         const { name, age } = JSON.parse(data)
@@ -84,5 +79,4 @@ const server = http.createServer(async (req, res) => {
     }
 })
 const PORT = process.env.PORT || 3000
-
 server.listen(PORT, () => console.log("Running: "))
