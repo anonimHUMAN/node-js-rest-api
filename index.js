@@ -25,11 +25,11 @@ const server = http.createServer(async (req, res) => {
         res.end(JSON.stringify(resp))
     } else if (req.url === "/books" && req.method === "POST") {
         const data = await getBodyData(req)
-        const { name, age} = JSON.parse(data)
+        const { name, age } = JSON.parse(data)
         const newBook = {
             id: v4(),
             name,
-            age            
+            age
         }
 
         books.push(newBook)
@@ -55,7 +55,7 @@ const server = http.createServer(async (req, res) => {
     } else if (req.url.match(/\/books\/\w+/) && req.method === "PUT") {
         const id = req.url.split("/")[2]
         const data = await getBodyData(req)
-        const { name, age  } = JSON.parse(data)
+        const { name, age } = JSON.parse(data)
         const idx = books.findIndex(b => b.id === id)
         const changedBook = {
             id: books[idx].id,
@@ -83,5 +83,6 @@ const server = http.createServer(async (req, res) => {
         res.end(JSON.stringify(resp))
     }
 })
+const PORT = process.env.PORT || 3000
 
-server.listen(3000, () => console.log("Running: "))
+server.listen(PORT, () => console.log("Running: "))
