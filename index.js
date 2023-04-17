@@ -5,8 +5,8 @@ const getBodyData = require("./util")
 let books = [
     {
         id: '1',
-        name: 'Book n1',
-        age: 250,
+        name: 'Black Ghost',
+        age: 16,
     }
 ]
 
