@@ -12,10 +12,9 @@ const server = http.createServer(async (req, res) => {
     // 
     if (req.url === '/') {
         res.writeHead(200, {
-            'Content-Type': 'application/json charset=utf8'
+            'Content-Type': 'text/html charset=utf8'
         })
-        let link = "PORTga kirish uchun '/' bilan 'books' deb yozing!!!"
-        res.end(link)
+        res.end(`<a href="/books">CLICK ME</a>`)
     } else if (req.url === '/books' && req.method === 'GET') {
         res.writeHead(200, {
             'Content-Type': 'application/json charset=utf8'
