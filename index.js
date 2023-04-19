@@ -6,11 +6,17 @@ let books = [
         id: '1',
         name: 'Black Ghost',
         age: 16,
-    },
+    }
 ]
 const server = http.createServer(async (req, res) => {
     // 
-    if (req.url === '/books' && req.method === 'GET') {
+    if (req.url === '/') {
+        res.writeHead(200, {
+            'Content-Type': 'application/json charset=utf8'
+        })
+        let link = "PORTga kirish uchun '/' bilan 'books' deb yozing!!!"
+        res.end(link)
+    } else if (req.url === '/books' && req.method === 'GET') {
         res.writeHead(200, {
             'Content-Type': 'application/json charset=utf8'
         })
@@ -62,7 +68,7 @@ const server = http.createServer(async (req, res) => {
             'Content-Type': 'application/json charset=utf8'
         })
         const resp = {
-            status: 'Created',
+            status: 'Changed',
             book: changedBook
         }
         res.end(JSON.stringify(resp))
